@@ -189,7 +189,7 @@ impl<E> ConsumerBuilder<E> {
     where
         K: Into<String>,
         // Annoyingly, can't just use the JobRunner<E> type alias here.
-        H: Fn(Job) -> Result<(), E> + Send + Sync + 'static
+        H: Fn(Job) -> Result<(), E> + 'static
     {
         self.callbacks.insert(kind.into(), Box::new(handler));
         self
