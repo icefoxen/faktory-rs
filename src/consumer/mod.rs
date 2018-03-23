@@ -13,7 +13,7 @@ const STATUS_RUNNING: usize = 0;
 const STATUS_QUIET: usize = 1;
 const STATUS_TERMINATING: usize = 2;
 
-type JobRunner<E> = Fn(Job) -> Result<(), E> + Send + Sync;
+type JobRunner<E> = Fn(Job) -> Result<(), E>;
 type BoxedJobRunner<E> = Box<JobRunner<E>>;
 
 /// `Consumer` is used to run a worker that processes jobs provided by Faktory.
@@ -357,7 +357,7 @@ where
             terminated: self.terminated,
         })
     }
-
+    /*
     /// Run this worker on the given `queues` until an I/O error occurs (`Err` is returned), or
     /// until the server tells the worker to disengage (`Ok` is returned).
     ///
@@ -368,6 +368,7 @@ where
     /// a job success or failure, the result will be re-reported to the server without re-executing
     /// the job. If the worker was terminated (i.e., `run` returns with an `Ok` response), the
     /// worker should **not** try to resume by calling `run` again. This will cause a panic.
+
     pub fn run<Q>(&mut self, queues: &[Q]) -> Result<usize, Error>
     where
         Q: AsRef<str>,
@@ -558,6 +559,7 @@ where
 
         process::exit(0);
     }
+*/
 }
 
 #[cfg(test)]
